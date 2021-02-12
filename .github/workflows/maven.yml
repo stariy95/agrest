@@ -38,8 +38,10 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Test var
-        run: echo "TEST_VAR=4.4-SNAPSHOT" >> $GITHUB_ENV
+#      - name: Test var
+#        run: echo "TEST_VAR=4.4-SNAPSHOT" >> $GITHUB_ENV
+
+      - uses: ./.github/actions/get-pom-version
 
       - name: Test env
         if: contains(env.TEST_VAR, '-SNAPSHOT')
