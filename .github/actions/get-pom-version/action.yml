@@ -9,5 +9,5 @@ runs:
   using: "composite"
   steps:
     - id: get-pom-version
-      run: bash.sh
+      run: $GITHUB_ACTION_PATH/bash.sh
       shell: bash
