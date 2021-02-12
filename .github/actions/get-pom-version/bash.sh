@@ -1,21 +1,10 @@
 #!/usr/bin/env bash
 
-function get_xpath_value {
-    if [ -f "$1" ]; then
-        value=$( xpath "$1" "$2" | perl -pe 's/^.+?\>//; s/\<.+?$//;' )
-#        2>/dev/null
-        echo "$value"
-    else
-        echo "Invalid xml file \"$1\"!"
-        exit 1;
-    fi
-}
+awk -F '<[^>]*>' '/<dependencies>/,/<\/dependencies>/{next} /artifactId/{$1=$1;print "Artifact IF is:" $0} /version/ {$1=$1;print "Version is:" $0}' pom.xml
 
-awk '/depend/{flag=1}flag&&/artifactId|version/{next}1' pom.xml
+#VERSION=$(get_xpath_value './pom.xml' 'project/version')
 
-VERSION=$(get_xpath_value './pom.xml' 'project/version')
-
-echo "pom.xml version: $VERSION"
+#echo "pom.xml version: $VERSION"
 
 # export VERSION to the GitHub env
 echo "POM_VERSION=$VERSION" >> "$GITHUB_ENV"
