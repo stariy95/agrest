@@ -8,4 +8,4 @@ VERSION=$(get_pom_version)
 echo "pom.xml version: $VERSION"
 
 # export VERSION to the GitHub env
-echo "POM_VERSION=$VERSION" >> "$GITHUB_ENV"
+echo "POM_VERSION=${VERSION##*( )}" >> "$GITHUB_ENV"
