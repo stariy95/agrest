@@ -1,9 +1,5 @@
 name: Pom version
 description: Gets version from the pom.xml file
-outputs:
-  pom-version:
-    description: "Version from the pom.xml"
-    value: ${{ steps.get-pom-version.outputs.pom-version }}
 
 runs:
   using: "composite"
