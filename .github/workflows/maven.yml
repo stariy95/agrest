@@ -26,6 +26,9 @@ jobs:
       - name: Build and test...
         run: mvn clean verify
 
+      - name: test
+        run: export TEST_VAR=123
+
   debug:
     runs-on: ubuntu-20.04
 
@@ -41,7 +44,7 @@ jobs:
       - name: Test env
         env:
           TEST_REF: ${{ github.ref }}
-        run: echo "running build on branch $GITHUB_REF ($TEST_REF)"
+        run: echo "running build on branch $TEST_VAR ($TEST_REF)"
 
 #  deploy:
 #    needs: build
