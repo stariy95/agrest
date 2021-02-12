@@ -2,8 +2,9 @@
 
 function get_xpath_value {
     if [ -f "$1" ]; then
-        value=$( xpath "$1" "$2" 2>/dev/null | perl -pe 's/^.+?\>//; s/\<.+?$//;' )
-        echo -n "$value"
+        value=$( xpath "$1" "$2" | perl -pe 's/^.+?\>//; s/\<.+?$//;' )
+#        2>/dev/null
+        echo "$value"
     else
         echo "Invalid xml file \"$1\"!"
         exit 1;
