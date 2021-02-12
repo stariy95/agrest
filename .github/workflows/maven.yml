@@ -44,7 +44,7 @@ jobs:
         run: TEST_VAR=4.4-SNAPSHOT && export TEST_VAR
 
       - name: Test env
-        if: contains(env.TEST_VAR, "-SNAPSHOT")
+        if: contains(env.TEST_VAR, '-SNAPSHOT')
         run: echo "running build on branch $TEST_VAR ($GITHUB_REF)"
 
 #  deploy:
