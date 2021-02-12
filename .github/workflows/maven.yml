@@ -38,6 +38,7 @@ jobs:
         with:
           java-version: 1.8
 
+      # this action exports env.POM_VERSION variable
       - uses: ./.github/actions/get-pom-version
 
       - name: Test env
