@@ -11,6 +11,8 @@ function get_xpath_value {
     fi
 }
 
+awk '/depend/{flag=1}flag&&/artifactId|version/{next}1' pom.xml
+
 VERSION=$(get_xpath_value './pom.xml' 'project/version')
 
 echo "pom.xml version: $VERSION"
