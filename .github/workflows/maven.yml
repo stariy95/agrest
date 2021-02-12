@@ -33,15 +33,18 @@ jobs:
       - name: Checkout...
         uses: actions/checkout@v2
 
-      - name: Set up JDK...
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
       # this action exports env.POM_VERSION variable
       - uses: ./.github/actions/get-pom-version
 
+      - name: Set up JDK...
+        uses: actions/setup-java@v1
+        # skip this for the release versions
+        if: contains(env.POM_VERSION, '-SNAPSHOT')
+        with:
+          java-version: 1.8
+
       - name: Test env
+        # skip this for the release versions
         if: contains(env.POM_VERSION, '-SNAPSHOT')
         run: echo "running build on branch $GITHUB_REF for version $POM_VERSION"
 
