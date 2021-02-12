@@ -8,6 +8,10 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - id: set-up
+      run: chmod +x $GITHUB_ACTION_PATH/bash.sh
+      shell: bash
+
     - id: get-pom-version
       run: $GITHUB_ACTION_PATH/bash.sh
       shell: bash
