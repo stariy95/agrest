@@ -5,7 +5,7 @@ runs:
   using: "composite"
   steps:
     - id: prerequsites
-      run: sudo apt-get install xpath perl
+      run: sudo apt-get install perl libxml-xpath-perl
       shell: bash
 
     - id: set-up
