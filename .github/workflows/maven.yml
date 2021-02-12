@@ -30,6 +30,8 @@ jobs:
         run: export TEST_VAR=123
 
   debug:
+    needs: build
+
     runs-on: ubuntu-20.04
 
     steps:
