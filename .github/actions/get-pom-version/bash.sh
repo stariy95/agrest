@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
+cat pom.xml | grep "version" | sed -e 's/version//g' | tr -d '<>/' | grep "^[0-9]"
+
 function get_xpath_value {
     if [ -f "$1" ]; then
-        cat "$1" | grep "version" | sed -e 's/version//g' | tr -d '<>/' | grep "^[0-9]"
-
         value=$( xpath "$1" "$2" | perl -pe 's/^.+?\>//; s/\<.+?$//;' )
 #        2>/dev/null
         echo "$value"
