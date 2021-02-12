@@ -26,9 +26,6 @@ jobs:
       - name: Build and test...
         run: mvn clean verify
 
-      - name: test
-        run: export TEST_VAR=123
-
   debug:
     needs: build
 
@@ -42,6 +39,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
+      - name: Test var
+        run: export TEST_VAR=123
 
       - name: Test env
         env:
