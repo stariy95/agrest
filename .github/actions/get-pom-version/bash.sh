@@ -13,4 +13,4 @@ function get_xpath_value {
 VERSION=$(get_xpath_value '../../pom.xml' 'project/version')
 
 # export VERSION to the GitHub env
-echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+echo "POM_VERSION=$VERSION" >> "$GITHUB_ENV"

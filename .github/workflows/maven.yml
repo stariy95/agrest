@@ -41,7 +41,7 @@ jobs:
       - uses: ./.github/actions/get-pom-version
 
       - name: Test env
-        if: contains(env.TEST_VAR, '-SNAPSHOT')
+        if: contains(env.POM_VERSION, '-SNAPSHOT')
         run: echo "running build on branch $TEST_VAR ($GITHUB_REF)"
 
 #  deploy:
