@@ -10,7 +10,7 @@ function get_xpath_value {
     fi
 }
 
-VERSION=$(get_xpath_value '../../pom.xml' 'project/version')
+VERSION=$(get_xpath_value './pom.xml' 'project/version')
 
 echo "$VERSION"
 
