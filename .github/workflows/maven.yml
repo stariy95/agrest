@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout...
@@ -27,7 +27,7 @@ jobs:
         run: mvn clean verify
 
   debug:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout...
@@ -40,7 +40,7 @@ jobs:
 
       - name: Test env
         env:
-          TEST_REF: github.ref
+          TEST_REF: ${{ github.ref }}
         run: echo "running build on branch $GITHUB_REF ($TEST_REF)"
 
 #  deploy:
