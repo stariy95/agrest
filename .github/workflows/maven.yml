@@ -5,26 +5,26 @@ on:
     branches: [ github-actions ]
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Checkout...
-        uses: actions/checkout@v2
-
-      - name: Set up JDK...
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
-      - name: Retrieve mvn repo cache...
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-build-v1
-
-      - name: Build and test...
-        run: mvn clean verify
+#  build:
+#    runs-on: ubuntu-20.04
+#
+#    steps:
+#      - name: Checkout...
+#        uses: actions/checkout@v2
+#
+#      - name: Set up JDK...
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.8
+#
+#      - name: Retrieve mvn repo cache...
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.m2/repository
+#          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-build-v1
+#
+#      - name: Build and test...
+#        run: mvn clean verify
 
   debug:
     needs: build
@@ -41,12 +41,11 @@ jobs:
           java-version: 1.8
 
       - name: Test var
-        run: export TEST_VAR=123
+        run: TEST_VAR=4.4-SNAPSHOT && export TEST_VAR
 
       - name: Test env
-        env:
-          TEST_REF: ${{ github.ref }}
-        run: echo "running build on branch $TEST_VAR ($TEST_REF)"
+        if: contains(env.TEST_VAR, "-SNAPSHOT")
+        run: echo "running build on branch $TEST_VAR ($GITHUB_REF)"
 
 #  deploy:
 #    needs: build
