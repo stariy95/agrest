@@ -4,6 +4,10 @@ description: Gets version from the pom.xml file
 runs:
   using: "composite"
   steps:
+    - id: prerequsites
+      run: apt-get install xpath perl
+      shell: bash
+
     - id: set-up
       run: chmod +x $GITHUB_ACTION_PATH/bash.sh
       shell: bash
